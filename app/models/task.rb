@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  validates :subject, :status, :type, presence: true
+  validates :subject, :description, :status, :type, presence: true
 
   enum status: {
     to_do: 'To Do',
