@@ -10,6 +10,33 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container sticky-top">
+      <nav class="navbar navbar-expand-lg text-decoration">
+        <%= link_to 'Tasks', tasks_path, class: "navbar-brand" %>
+         <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to 'New Task', new_task_path, class: "nav-link" %>
+          </li>
+         </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <% flash.each do |name,message| %>
+            <div class="alert <%= bootstrap_class_for(name) %>">
+              <button class="close" data-dismiss="alert">&times;</button>
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
   </body>
 </html>

@@ -25,6 +25,7 @@ gem 'delayed_job', '~> 4.1', '>= 4.1.7'
 gem 'rspec', '~> 3.8'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
+gem 'pry', '~> 0.12.2'
 
 
 group :development, :test do
