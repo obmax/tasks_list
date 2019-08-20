@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class Task < ApplicationRecord
   validates :subject, :description, :status, :type, presence: true
 
   enum status: {
     to_do: 'To Do',
-    in_progress: 'In Progress', 
-    in_review: 'In Review', 
-    done: 'Done' 
+    in_progress: 'In Progress',
+    in_review: 'In Review',
+    done: 'Done'
   }
 
   def self.types
-    %w(Issue Story)
+    %w[Issue Story]
   end
 end

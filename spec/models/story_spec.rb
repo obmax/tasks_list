@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Task, type: :model do
   context 'validation tests' do
@@ -7,17 +9,29 @@ RSpec.describe Task, type: :model do
     end
 
     it 'ensures the subject is present' do
-      task = Task.create(description: 'Abasdflgjksg', status: 'To Do', type: 'Issue')
+      task = Task.create(
+        description: 'Abasdflgjksg',
+        status: 'To Do',
+        type: 'Issue'
+      )
       expect(task.valid?).to eq(false)
     end
 
     it 'ensures the description is present' do
-      task = Task.create(subject: 'Abasdflgjksg', status: 'To Do', type: 'Issue')
+      task = Task.create(
+        subject: 'Abasdflgjksg',
+        status: 'To Do',
+        type: 'Issue'
+      )
       expect(task.valid?).to eq(false)
     end
 
     it 'ensures the status is present' do
-      task = Task.create(subject: 'sssss', description: 'Abasdflgjksg', type: 'Issue')
+      task = Task.create(
+        subject: 'sssss',
+        description: 'Abasdflgjksg',
+        type: 'Issue'
+      )
       expect(task.valid?).to eq(false)
     end
   end
