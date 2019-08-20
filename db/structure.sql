@@ -106,7 +106,9 @@ CREATE TABLE public.tasks (
     type character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    status public.task_status
+    status public.task_status,
+    assignee integer,
+    created_by integer
 );
 
 
@@ -264,6 +266,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190814195205'),
 ('20190814205547'),
 ('20190819181840'),
-('20190819181842');
+('20190819181842'),
+('20190820205735');
 
 

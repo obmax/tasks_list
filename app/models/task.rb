@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
+  belongs_to :admin, foreign_key: :created_by
+  belongs_to :user, foreign_key: :assignee
   validates :subject, :description, :status, :type, presence: true
 
   enum status: {
