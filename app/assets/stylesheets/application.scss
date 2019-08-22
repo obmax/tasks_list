@@ -15,9 +15,13 @@
  */
 @import "bootstrap";
 
+body{
+  background-color: #EFEAEA;
+}
+
 nav.navbar{
     border-radius: 0px 0px 5px 5px;
-    background-color: #435058;
+    background-color: #CFB392;
     a{
       color: #EFEFEF;
     }

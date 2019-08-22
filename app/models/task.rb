@@ -3,7 +3,7 @@
 class Task < ApplicationRecord
   belongs_to :admin, foreign_key: :created_by
   belongs_to :user, foreign_key: :assignee
-  validates :subject, :description, :status, :type, presence: true
+  validates :subject, :description, :status, :type, :assignee, presence: true
 
   enum status: {
     to_do: 'To Do',

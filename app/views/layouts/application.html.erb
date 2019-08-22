@@ -18,6 +18,18 @@
             <%= link_to 'New Task', new_task_path, class: "nav-link" %>
           </li>
          </ul>
+         <ul class="navbar-nav pull-xs-right">
+          <% if admin_signed_in? %>
+            <li class="nav-item active">
+              <%= link_to 'Log out admin', destroy_admin_session_path, method: :delete %>
+            </li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li class="nav-item active">
+              <%= link_to 'Log out user', destroy_user_session_path, method: :delete %>
+            </li>
+          <% end %>
+         </ul>
       </nav>
     </div>
 

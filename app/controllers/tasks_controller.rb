@@ -25,14 +25,13 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @task.created_by = current_admin.id
 
     respond_to do |format|
       if @task.save
         html_response(format, to_task, 'Task was successfully created.')
-        format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +42,8 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update(task_params)
         html_response(format, @task, 'Task was successfully updated.')
-        format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +54,6 @@ class TasksController < ApplicationController
     @task.destroy
     respond_to do |format|
       html_response(format, tasks_url, 'Task was successfully destroyed.')
-      format.json { head :no_content }
     end
   end
 
@@ -68,7 +64,10 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:subject, :description, :type, :status)
+    params.require(:task).permit(
+      :subject, :description,
+      :type, :status, :assignee
+    )
   end
 
   def to_task

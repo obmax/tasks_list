@@ -1,33 +1,18 @@
 <div class="task-form">
   <%= simple_form_for task do |f| %>
-    <% if task.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+    <%= f.error_notification %>
 
-        <ul>
-          <% task.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <div class="form-inputs">
+      <%= f.input :subject, label: 'Subject' %>
+      <%= f.input :description, as: :text %>
+      <%= f.input :status, collection: Task.statuses.values, default: Task.statuses.values.first %>
+      <%= f.input :type, as: :radio_buttons, collection: Task.types %>
+      <%= f.input :assignee, collection: User.all %>
+    </div>
 
-    <div class="form-group">
-      <%= f.input :subject, label: 'Subject', class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.input :description, as: :text, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.input :status, collection: Task.statuses.values, default: Task.statuses.values.first, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.input :type, as: :radio_buttons, collection: Task.types, class: 'form-control' %>
-    </div>
-    
-    <div class="form-group">
+    <div class="form-actions">
       <%= f.button :submit, class: 'btn btn-primary' %>
-      <%= link_to 'Назад', :back, class: 'btn btn-outline-secondary' %>
+      <%= link_to 'Back', :back, class: 'btn btn-outline-secondary' %>
     </div>
   <% end %>
 </div>
