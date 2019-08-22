@@ -11,16 +11,16 @@
     </div>
   </div>
 
-  <% if is_task_in_to_do? %>
+  <% if task_in_to_do? %>
     <p><%= link_to "Start working", start_working_task_path(@task), class: 'btn btn-primary' %><p>
   <% end %>
 
-  <% if is_task_in_process? %>
+  <% if task_in_process? %>
     <p><%= link_to "Back to To Do", back_to_do_task_path(@task), class: 'btn btn-info' %><p>
     <p><%= link_to "Send to review", send_to_review_task_path(@task), class: 'btn btn-secondary' %><p>
   <% end %>
 
-  <% if is_task_in_review? %>
+  <% if task_in_review? %>
     <p><%= link_to "Close", close_task_path(@task), class: 'btn btn-info' %><p>
   <% end %>
 

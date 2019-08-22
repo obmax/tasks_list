@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TaskMailer < ApplicationMailer
   default from: 'Maks99_08@mail.ru'
 

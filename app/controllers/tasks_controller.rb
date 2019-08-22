@@ -83,7 +83,7 @@ class TasksController < ApplicationController
     @task.status = 'In Review'
     @task.save
     TaskMailer.with(task: @task).in_review_status_email.deliver_now
-    
+
     redirect_to task_url(@task)
   end
 
