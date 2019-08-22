@@ -14,9 +14,10 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    redirect_to tasks_path
+  end
 
   # GET /resource/edit
   # def edit

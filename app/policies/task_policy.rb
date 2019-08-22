@@ -21,6 +21,22 @@ class TaskPolicy < ApplicationPolicy
     create?
   end
 
+  def start_working?
+    index?
+  end
+
+  def back_to_do?
+    index?
+  end
+
+  def send_to_review?
+    index?
+  end
+
+  def close?
+    user.is_a? Admin
+  end
+
   private
 
   def task

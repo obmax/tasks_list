@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy]
+  before_action :set_task, except: %i[index new create]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   # GET /tasks
@@ -34,6 +34,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        TaskMailer.with(task: @task).created_task_email.deliver_now
         html_response(format, to_task, 'Task was successfully created.')
       else
         format.html { render :new }
@@ -61,6 +62,37 @@ class TasksController < ApplicationController
     respond_to do |format|
       html_response(format, tasks_url, 'Task was successfully destroyed.')
     end
+  end
+
+  def start_working
+    @task.status = 'In Progress'
+    @task.save
+    TaskMailer.with(task: @task).in_process_status_email.deliver_now
+
+    redirect_to task_url(@task)
+  end
+
+  def back_to_do
+    @task.status = 'To Do'
+    @task.save
+
+    redirect_to task_url(@task)
+  end
+
+  def send_to_review
+    @task.status = 'In Review'
+    @task.save
+    TaskMailer.with(task: @task).in_review_status_email.deliver_now
+    
+    redirect_to task_url(@task)
+  end
+
+  def close
+    @task.status = 'Done'
+    @task.save
+    TaskMailer.with(task: @task).done_status_email.deliver_now
+
+    redirect_to task_url(@task)
   end
 
   private
