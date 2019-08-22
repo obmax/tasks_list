@@ -11,6 +11,10 @@
     </div>
   </div>
 
+  <% if policy(@task).edit? %>
+    <%= link_to "Edit task", edit_task_path(@task) %>
+  <% end %>
+
   <div class="col md 3">
     <div class="status">
       <p><%= Task.statuses[@task.status] %></p>
@@ -22,5 +26,4 @@
       <p>Updated: <%= @task.updated_at %></p>
     </div>
   </div>
-
 </div>

@@ -1,0 +1,24 @@
+<div class="container sticky-top">
+  <nav class="navbar navbar-expand-lg text-decoration">
+    <%= link_to 'Tasks', tasks_path, class: "navbar-brand" %>
+     <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <% if admin_signed_in? %>
+          <%= link_to "New Task", new_task_path, class: "nav-link"  %>
+        <% end %>
+      </li>
+     </ul>
+     <ul class="navbar-nav pull-xs-right">
+      <% if admin_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to 'Log out admin', destroy_admin_session_path, method: :delete %>
+        </li>
+      <% end %>
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to 'Log out user', destroy_user_session_path, method: :delete %>
+        </li>
+      <% end %>
+     </ul>
+  </nav>
+</div>
