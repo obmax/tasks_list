@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'delayed_job', '~> 4.1', '>= 4.1.7'
-gem 'devise', '~> 4.6', '>= 4.6.2'
+gem 'devise', '~> 4.7'
 gem 'dry-struct', '~> 1.0'
 gem 'factory_bot_rails'
 gem 'faker', '~> 2.1'
